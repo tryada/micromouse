@@ -36,9 +36,15 @@
     <ClCompile Include="Micromouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ControlPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Micromouse.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ControlPanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
