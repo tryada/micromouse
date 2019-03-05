@@ -20,7 +20,11 @@ void Micromouse::setupLayout()
 {
 	mainLayout = new QGridLayout();
 	controlPanel = new ControlPanel(this);
+	mazerPanel = new MazerPanel(this);
 
+	mainLayout->setColumnStretch(0, 1);
+	mainLayout->setColumnStretch(1, 5);
 	mainLayout->addWidget(controlPanel, 0, 0);
+	mainLayout->addWidget(mazerPanel, 0, 1);
 	centralWidget()->setLayout(mainLayout);
 }

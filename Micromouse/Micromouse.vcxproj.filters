@@ -39,12 +39,18 @@
     <ClCompile Include="ControlPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MazerPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Micromouse.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="ControlPanel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MazerPanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
