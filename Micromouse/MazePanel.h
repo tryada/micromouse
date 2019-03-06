@@ -5,19 +5,21 @@
 #include <qgraphicsscene.h>
 #include <qgraphicsview.h>
 #include <qlayout.h>
+#include "MazeGenerator.h"
 
-class MazerPanel : public QWidget
+class MazePanel : public QWidget
 {
 	Q_OBJECT
 
 public:
-	MazerPanel(QWidget *parent);
-	~MazerPanel();
+	MazePanel(QWidget *parent);
+	~MazePanel();
 
+	void generate();
+
+	QGraphicsView* getView();
 
 private:
-	QGridLayout *layout;
-
 	QGraphicsScene *scene;
 	QGraphicsView *view;
 

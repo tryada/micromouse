@@ -39,7 +39,10 @@
     <ClCompile Include="ControlPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MazerPanel.cpp">
+    <ClCompile Include="MazePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MazeGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +53,7 @@
     <QtMoc Include="ControlPanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="MazerPanel.h">
+    <QtMoc Include="MazePanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -63,5 +66,10 @@
     <QtRcc Include="Micromouse.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MazeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

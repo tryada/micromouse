@@ -19,24 +19,24 @@ private:
 	QVBoxLayout *layout = Q_NULLPTR;
 
 	// labels
-	QLabel *mazerSizeLabel;
-	QLabel *mazerSizeResultLabel;
+	QLabel *mazeSizeLabel;
+	QLabel *mazeSizeResultLabel;
 	QLabel *algorithmPickerLabel;
 	QLabel *speedLabel;
 	QLabel *pathLabel;
-	QLabel *mazerReviewLabel;
-	QLabel *mazerReviewTimeLabel;
-	QLabel *mazerRunLabel;
-	QLabel *mazerRunTimeLabel;
+	QLabel *mazeReviewLabel;
+	QLabel *mazeReviewTimeLabel;
+	QLabel *mazeRunLabel;
+	QLabel *mazeRunTimeLabel;
 
 	// inputs
-	QSlider *mazerSizeSlider;
+	QSlider *mazeSizeSlider;
 	QSlider *speedSlider;
 	QCheckBox *pathCheckBox;
 
 	// buttons
-	QPushButton *generateMazerButton;
-	QPushButton *startMazerReviewButton;
+	QPushButton *generateMazeButton;
+	QPushButton *startMazeReviewButton;
 	QPushButton *runButton;
 
 	// methods

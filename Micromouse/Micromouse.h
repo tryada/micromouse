@@ -4,7 +4,7 @@
 #include <qlayout.h>
 #include "ui_Micromouse.h"
 #include "ControlPanel.h"
-#include "MazerPanel.h"
+#include "MazePanel.h"
 
 class Micromouse : public QMainWindow
 {
@@ -20,7 +20,7 @@ private:
 	// layouts
 	QGridLayout *mainLayout;
 	ControlPanel *controlPanel;
-	MazerPanel *mazerPanel;
+	MazePanel *mazerPanel;
 
 	// methods
 	void setupLayout();
