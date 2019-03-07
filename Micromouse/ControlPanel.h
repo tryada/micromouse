@@ -6,6 +6,7 @@
 #include <qslider.h>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
+#include <qcombobox.h>
 
 class ControlPanel : public QWidget
 {
@@ -19,9 +20,7 @@ private:
 	QVBoxLayout *layout = Q_NULLPTR;
 
 	// labels
-	QLabel *mazeSizeLabel;
-	QLabel *mazeSizeResultLabel;
-	QLabel *algorithmPickerLabel;
+	QLabel *mazeLabel;
 	QLabel *speedLabel;
 	QLabel *pathLabel;
 	QLabel *mazeReviewLabel;
@@ -30,12 +29,12 @@ private:
 	QLabel *mazeRunTimeLabel;
 
 	// inputs
-	QSlider *mazeSizeSlider;
+	QComboBox *mazeComboBox;
 	QSlider *speedSlider;
 	QCheckBox *pathCheckBox;
 
 	// buttons
-	QPushButton *generateMazeButton;
+	QPushButton *loadMazeButton;
 	QPushButton *startMazeReviewButton;
 	QPushButton *runButton;
 

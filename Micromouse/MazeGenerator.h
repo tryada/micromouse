@@ -3,6 +3,10 @@
 #include <qgraphicsscene.h>
 #include <qgraphicsitem.h>
 #include <vector>
+#include <qfile.h>
+#include <qtextstream.h>
+#include <string>
+#include <qdebug.h>
 
 class MazeGenerator
 {
@@ -18,6 +22,5 @@ private:
 
 	std::vector<std::vector<QGraphicsRectItem*>>* blocks;
 	bool validateSize(int size);
-	void colorVector(std::vector<QGraphicsRectItem*> vectors);
-	void setColors();
+	void loadFromFile();
 };

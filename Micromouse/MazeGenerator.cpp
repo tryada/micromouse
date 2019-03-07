@@ -13,51 +13,42 @@ MazeGenerator::~MazeGenerator()
 void MazeGenerator::generate(int size)
 {
 	int height = scene->height();
-
-	if (!validateSize(size))
-	{
-		size = 80;
-	}
-
 	int step = height / size;
 	int lenght = size * step;
 
-	for (int i = 0; i <= lenght; i += step)
+	for (int i = 0; i < lenght; i += step)
 	{
 		std::vector<QGraphicsRectItem*> temp;
-		for (int j = 0; j <= lenght; j += step)
+		for (int j = 0; j < lenght; j += step)
 		{
-			QRect rect(i, j, step, step);
-			temp.push_back(scene->addRect(rect));
+			QRect rect(j, i, step, step);
+			temp.push_back(scene->addRect(rect, QPen(Qt::lightGray)));
 		}
 		blocks->push_back(temp);
 	}
 
-	//setColors();
+	this->loadFromFile();
 }
 
-bool MazeGenerator::validateSize(int size)
+void MazeGenerator::loadFromFile()
 {
-	return scene->height() / size >= 4;
-}
-
-void MazeGenerator::colorVector(std::vector<QGraphicsRectItem*> vectors)
-{
-
-}
-
-void MazeGenerator::setColors()
-{
-	for (int i = 0; i < this->blocks->size(); i++)
+	QFile f(":/maze/maze_2");
+	if (f.open(QFile::ReadOnly | QFile::Text))
 	{
-		if (i % 2)
+		QTextStream in(&f);
+		int index = 0;
+		while (!in.atEnd())
 		{
-			auto vector = this->blocks->at(i);
-			for (int j = 0; j < vector.size(); j++)
+			std::string line = in.readLine().toStdString();
+			for (int i = 0; i < line.length(); i++)
 			{
-				vector.at(j)->setBrush(QBrush(Qt::black));
-				vector.at(j)->setPen(QPen(Qt::black));
+				if (line[i] == '#')
+				{
+					blocks->at(index)[i]->setBrush(QBrush(Qt::black));
+					blocks->at(index)[i]->setPen(QPen(Qt::black));
+				}
 			}
+			index++;
 		}
 	}
 }

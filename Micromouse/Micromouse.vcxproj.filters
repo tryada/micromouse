@@ -28,6 +28,9 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{b2125a6d-e7b9-4950-a730-112f7d812e14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,5 +74,13 @@
     <ClInclude Include="MazeGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\micromouse_maze_1.txt">
+      <Filter>Resources</Filter>
+    </Text>
+    <Text Include="Resources\micromouse_maze_2.txt">
+      <Filter>Resources</Filter>
+    </Text>
   </ItemGroup>
 </Project>

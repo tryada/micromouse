@@ -9,11 +9,9 @@ ControlPanel::ControlPanel(QWidget *parent)
 ControlPanel::~ControlPanel()
 {
 	delete(layout);
-	delete(mazeSizeLabel);
-	delete(mazeSizeSlider);
-	delete(mazeSizeResultLabel);
-	delete(generateMazeButton);
-	delete(algorithmPickerLabel);
+	delete(mazeLabel);
+	delete(mazeComboBox);
+	delete(loadMazeButton);
 	delete(speedLabel);
 	delete(speedSlider);
 	delete(pathLabel);
@@ -34,11 +32,9 @@ void ControlPanel::setupLayout()
 
 	layout = new QVBoxLayout();
 
-	layout->addWidget(mazeSizeLabel);
-	layout->addWidget(mazeSizeSlider);
-	layout->addWidget(mazeSizeResultLabel);
-	layout->addWidget(generateMazeButton);
-	layout->addWidget(algorithmPickerLabel);
+	layout->addWidget(mazeLabel);
+	layout->addWidget(mazeComboBox);
+	layout->addWidget(loadMazeButton);
 	layout->addWidget(speedLabel);
 	layout->addWidget(speedSlider);
 	layout->addWidget(pathLabel);
@@ -55,9 +51,7 @@ void ControlPanel::setupLayout()
 
 void ControlPanel::setupLabels()
 {
-	mazeSizeLabel = new QLabel("Rozmiar planszy");
-	mazeSizeResultLabel = new QLabel("100 x 100");
-	algorithmPickerLabel = new QLabel("Algorytm");
+	mazeLabel = new QLabel("Wybierz labirynt");
 	speedLabel = new QLabel("Prędkość myszy");
 	pathLabel = new QLabel("Ślad");
 	mazeReviewLabel = new QLabel("Czas analizy toru");
@@ -68,14 +62,16 @@ void ControlPanel::setupLabels()
 
 void ControlPanel::setupInputs()
 {
-	mazeSizeSlider = new QSlider(Qt::Horizontal);
+	mazeComboBox = new QComboBox();
+	mazeComboBox->addItem(QString("Pierwszy"));
+	mazeComboBox->addItem(QString("Drugi"));
 	speedSlider = new QSlider(Qt::Horizontal);
 	pathCheckBox = new QCheckBox("Pokaż");
 }
 
 void ControlPanel::setupButtons()
 {
-	generateMazeButton = new QPushButton("Generuj labirynt");
+	loadMazeButton = new QPushButton("Wczytaj labirynt");
 	startMazeReviewButton = new QPushButton("Rozpocznij analizę");
 	runButton = new QPushButton("Start");
 }

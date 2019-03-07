@@ -143,6 +143,10 @@
   <ItemGroup>
     <ClInclude Include="MazeGenerator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\micromouse_maze_1.txt" />
+    <Text Include="Resources\micromouse_maze_2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
