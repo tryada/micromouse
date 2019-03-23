@@ -20,7 +20,7 @@ private:
 	// layouts
 	QGridLayout *mainLayout;
 	ControlPanel *controlPanel;
-	MazePanel *mazerPanel;
+	MazePanel *mazePanel;
 
 	// methods
 	void setupLayout();

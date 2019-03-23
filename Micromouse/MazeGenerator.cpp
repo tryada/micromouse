@@ -34,7 +34,7 @@ void MazeGenerator::loadFromFile()
 {
 	QFile f(":/maze/maze_2");
 	if (f.open(QFile::ReadOnly | QFile::Text))
-	{
+	{ 
 		QTextStream in(&f);
 		int index = 0;
 		while (!in.atEnd())

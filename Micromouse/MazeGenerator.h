@@ -21,6 +21,5 @@ private:
 	QGraphicsScene* scene;
 
 	std::vector<std::vector<QGraphicsRectItem*>>* blocks;
-	bool validateSize(int size);
 	void loadFromFile();
 };
