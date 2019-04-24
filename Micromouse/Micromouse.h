@@ -3,8 +3,8 @@
 #include <QtWidgets/QMainWindow>
 #include <qlayout.h>
 #include "ui_Micromouse.h"
-#include "ControlPanel.h"
-#include "MazePanel.h"
+#include "controlPanel.h"
+#include "mazePanel.h"
 
 class Micromouse : public QMainWindow
 {

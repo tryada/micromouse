@@ -1,4 +1,4 @@
-#include "ControlPanel.h"
+#include "controlPanel.h"
 
 ControlPanel::ControlPanel(QWidget *parent)
 	: QWidget(parent)

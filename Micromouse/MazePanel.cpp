@@ -1,33 +1,23 @@
-#include "MazePanel.h"
+#include "mazePanel.h"
 
 MazePanel::MazePanel(QWidget *parent)
-	: QWidget(parent)
+	: QGraphicsView(parent)
 {
 	this->setup();
-}
+}	
 
 MazePanel::~MazePanel()
 {
 }
 
-void MazePanel::generate()
-{
-	MazeGenerator generator(scene);
-	generator.generate(33);
-}
-
-QGraphicsView * MazePanel::getView()
-{
-	return this->view;
-}
-
 void MazePanel::setup()
 {
-	scene = new QGraphicsScene(this);
+	maze = new Maze(this);
 
-	scene->setSceneRect(0, 0, 660, 660);
-	scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+	maze->setSceneRect(0, 0, 660, 660);
+	maze->setItemIndexMethod(QGraphicsScene::NoIndex);
+	maze->setup();
 
-	view = new QGraphicsView(scene);
-	view->setBackgroundBrush(Qt::lightGray);
+	this->setScene(maze);
+	this->setBackgroundBrush(Qt::lightGray);
 }

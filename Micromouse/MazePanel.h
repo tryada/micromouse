@@ -5,9 +5,10 @@
 #include <qgraphicsscene.h>
 #include <qgraphicsview.h>
 #include <qlayout.h>
-#include "MazeGenerator.h"
+#include "mazeLoader.h"
+#include "maze.h"
 
-class MazePanel : public QWidget
+class MazePanel : public QGraphicsView
 {
 	Q_OBJECT
 
@@ -15,13 +16,8 @@ public:
 	MazePanel(QWidget *parent);
 	~MazePanel();
 
-	void generate();
-
-	QGraphicsView* getView();
-
 private:
-	QGraphicsScene *scene;
-	QGraphicsView *view;
+	Maze *maze;
 
 	// methods
 	void setup();
