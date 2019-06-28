@@ -51,7 +51,7 @@
     <ClCompile Include="Micromouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mazeLoader.cpp">
+    <ClCompile Include="mazeBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -94,7 +94,7 @@
     <ClInclude Include="mouse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mazeLoader.h">
+    <ClInclude Include="mazeBlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 ControlPanel::ControlPanel(QWidget *parent)
 	: QWidget(parent)
 {
+	this->setFixedHeight(400);
 	this->setupLayout();
 }
 

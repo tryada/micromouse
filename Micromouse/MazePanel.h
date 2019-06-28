@@ -5,8 +5,8 @@
 #include <qgraphicsscene.h>
 #include <qgraphicsview.h>
 #include <qlayout.h>
-#include "mazeLoader.h"
 #include "maze.h"
+#include "qtimer.h"
 
 class MazePanel : public QGraphicsView
 {
@@ -18,6 +18,9 @@ public:
 
 private:
 	Maze *maze;
+	QTimer timer;
+
+	const int mazeSceneSize = 660;
 
 	// methods
 	void setup();

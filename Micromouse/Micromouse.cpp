@@ -4,8 +4,6 @@ Micromouse::Micromouse(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	QWidget * central = new QWidget();
-	setCentralWidget(central);
 	this->setupLayout();
 }
 
@@ -18,7 +16,7 @@ Micromouse::~Micromouse()
 
 void Micromouse::setupLayout()
 {
-	mainLayout = new QGridLayout();
+	mainLayout = new QGridLayout(this);
 	controlPanel = new ControlPanel(this);
 	mazePanel = new MazePanel(this);
 
@@ -26,5 +24,6 @@ void Micromouse::setupLayout()
 	mainLayout->setColumnStretch(1, 5);
 	mainLayout->addWidget(controlPanel, 0, 0);
 	mainLayout->addWidget(mazePanel, 0, 1);
+	mainLayout->setAlignment(controlPanel, Qt::AlignTop);
 	centralWidget()->setLayout(mainLayout);
 }

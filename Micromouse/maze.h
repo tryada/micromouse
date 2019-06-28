@@ -2,8 +2,9 @@
 
 #include <QGraphicsScene>
 #include <qgraphicsitem.h>
-#include <string>
-#include "mazeLoader.h"
+#include <qstring.h>
+#include "mazeBlock.h"
+#include "mouse.h"
 
 class Maze : public QGraphicsScene
 {
@@ -14,12 +15,15 @@ public:
 	~Maze();
 
 	void setup();
-	void loadFromTemplate(std::string templateName);
+	void loadFromResources(QString name);
+
+	void setMouse(Mouse* mouse);
 
 private:
 	const int size = 33;
-	std::vector<std::vector<QGraphicsRectItem*>>* blocks;
+	std::vector<std::vector<MazeBlock*>>* blocks;
+	Mouse* mouse;
+	MazeBlock* startBlock;
 
 	void setupGrid();
-
 };

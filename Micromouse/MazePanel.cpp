@@ -14,7 +14,7 @@ void MazePanel::setup()
 {
 	maze = new Maze(this);
 
-	maze->setSceneRect(0, 0, 660, 660);
+	maze->setSceneRect(0, 0, mazeSceneSize, mazeSceneSize);
 	maze->setItemIndexMethod(QGraphicsScene::NoIndex);
 	maze->setup();
 
