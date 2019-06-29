@@ -26,4 +26,5 @@ private:
 	MazeBlock* startBlock;
 
 	void setupGrid();
+	void clearGrid();
 };

@@ -1,4 +1,5 @@
 #include "mazePanel.h"
+#include "mouse.h"
 
 MazePanel::MazePanel(QWidget *parent)
 	: QGraphicsView(parent)
@@ -20,4 +21,10 @@ void MazePanel::setup()
 
 	this->setScene(maze);
 	this->setBackgroundBrush(Qt::lightGray);
+}
+
+void MazePanel::templateChanged(QString name)
+{
+	this->maze->loadFromResources(name);
+	this->maze->setMouse(new Mouse());
 }

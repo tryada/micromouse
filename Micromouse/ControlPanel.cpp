@@ -1,10 +1,12 @@
 #include "controlPanel.h"
+#include <qdir.h>
 
 ControlPanel::ControlPanel(QWidget *parent)
 	: QWidget(parent)
 {
 	this->setFixedHeight(400);
 	this->setupLayout();
+	this->setupSignalsAndSlots();
 }
 
 ControlPanel::~ControlPanel()
@@ -64,8 +66,13 @@ void ControlPanel::setupLabels()
 void ControlPanel::setupInputs()
 {
 	mazeComboBox = new QComboBox();
-	mazeComboBox->addItem(QString("Pierwszy"));
-	mazeComboBox->addItem(QString("Drugi"));
+
+	auto mazeCount = QDir(":/maze/").entryList().size();
+	mazeComboBox->addItem(QString("<pusty>"));
+	for (int i = 1; i <= mazeCount; i++)
+	{
+		mazeComboBox->addItem(QString("Przykład: " + QString::number(i)));
+	}
 	speedSlider = new QSlider(Qt::Horizontal);
 	pathCheckBox = new QCheckBox("Pokaż");
 }
@@ -75,4 +82,19 @@ void ControlPanel::setupButtons()
 	loadMazeButton = new QPushButton("Wczytaj labirynt");
 	startMazeReviewButton = new QPushButton("Rozpocznij analizę");
 	runButton = new QPushButton("Start");
+}
+
+void ControlPanel::setupSignalsAndSlots()
+{
+	QObject::connect(loadMazeButton, &QPushButton::released, this, &ControlPanel::loadMazeButtonClick);
+}
+
+void ControlPanel::loadMazeButtonClick()
+{
+	auto currentIndex = mazeComboBox->currentIndex();
+	QString arg;
+	if (currentIndex > 0) {
+		arg = ":/maze/maze_" + QString::number(currentIndex);
+	}
+	sampleChange(arg);
 }

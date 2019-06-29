@@ -7,6 +7,7 @@
 #include <qpushbutton.h>
 #include <qcheckbox.h>
 #include <qcombobox.h>
+#include <qstring.h>
 
 class ControlPanel : public QWidget
 {
@@ -43,4 +44,11 @@ private:
 	void setupLabels();
 	void setupInputs();
 	void setupButtons();
+	void setupSignalsAndSlots();
+
+private slots:
+	void loadMazeButtonClick();
+
+signals:
+	void sampleChange(QString name);
 };

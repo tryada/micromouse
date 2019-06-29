@@ -55,3 +55,9 @@ bool MazeBlock::IsUsed()
 {
 	return isStart || isFinish || isWall;
 }
+
+void MazeBlock::clear()
+{
+	this->isStart = this->isFinish = this->isWall = false;
+	this->setBrush(QBrush(Qt::lightGray));
+}

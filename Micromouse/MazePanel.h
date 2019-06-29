@@ -5,6 +5,7 @@
 #include <qgraphicsscene.h>
 #include <qgraphicsview.h>
 #include <qlayout.h>
+#include <qstring.h>
 #include "maze.h"
 #include "qtimer.h"
 
@@ -24,4 +25,7 @@ private:
 
 	// methods
 	void setup();
+
+public slots:
+	void templateChanged(QString name);
 };

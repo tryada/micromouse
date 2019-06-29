@@ -5,6 +5,7 @@ Micromouse::Micromouse(QWidget *parent)
 {
 	ui.setupUi(this);
 	this->setupLayout();
+	this->setupSignalsAndSlots();
 }
 
 Micromouse::~Micromouse()
@@ -27,3 +28,9 @@ void Micromouse::setupLayout()
 	mainLayout->setAlignment(controlPanel, Qt::AlignTop);
 	centralWidget()->setLayout(mainLayout);
 }
+
+void Micromouse::setupSignalsAndSlots()
+{
+	QObject::connect(controlPanel, &ControlPanel::sampleChange, mazePanel, &MazePanel::templateChanged);
+}
+ 

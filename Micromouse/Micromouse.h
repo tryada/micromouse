@@ -24,4 +24,5 @@ private:
 
 	// methods
 	void setupLayout();
+	void setupSignalsAndSlots();
 };

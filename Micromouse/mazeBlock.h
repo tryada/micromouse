@@ -16,6 +16,8 @@ public:
 	void setIsWall(bool isWall);
 	bool IsUsed();
 
+	void clear();
+
 private:
 	bool isStart;
 	bool isFinish;
