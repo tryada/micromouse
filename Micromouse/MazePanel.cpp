@@ -28,3 +28,11 @@ void MazePanel::templateChanged(QString name)
 	this->maze->loadFromResources(name);
 	this->maze->setMouse(new Mouse());
 }
+
+void MazePanel::run()
+{
+}
+
+void MazePanel::analyze()
+{
+}

@@ -48,7 +48,11 @@ private:
 
 private slots:
 	void loadMazeButtonClick();
+	void analyzeButtonClick();
+	void runButtonClick();
 
 signals:
 	void sampleChange(QString name);
+	void run();
+	void analyze();
 };

@@ -87,6 +87,18 @@ void ControlPanel::setupButtons()
 void ControlPanel::setupSignalsAndSlots()
 {
 	QObject::connect(loadMazeButton, &QPushButton::released, this, &ControlPanel::loadMazeButtonClick);
+	QObject::connect(startMazeReviewButton, &QPushButton::released, this, &ControlPanel::analyzeButtonClick);
+	QObject::connect(runButton, &QPushButton::released, this, &ControlPanel::runButtonClick);
+}
+
+void ControlPanel::analyzeButtonClick()
+{
+	analyze();
+}
+
+void ControlPanel::runButtonClick() 
+{
+	run();
 }
 
 void ControlPanel::loadMazeButtonClick()
