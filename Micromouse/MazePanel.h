@@ -7,7 +7,7 @@
 #include <qlayout.h>
 #include <qstring.h>
 #include "maze.h"
-#include "qtimer.h"
+#include "mouse.h"
 
 class MazePanel : public QGraphicsView
 {
@@ -19,9 +19,9 @@ public:
 
 private:
 	Maze *maze;
-	QTimer timer;
 
 	const int mazeSceneSize = 660;
+	Mouse* mouse = nullptr;
 
 	// methods
 	void setup();

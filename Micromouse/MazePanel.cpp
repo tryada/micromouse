@@ -1,5 +1,4 @@
 #include "mazePanel.h"
-#include "mouse.h"
 
 MazePanel::MazePanel(QWidget *parent)
 	: QGraphicsView(parent)
@@ -26,13 +25,19 @@ void MazePanel::setup()
 void MazePanel::templateChanged(QString name)
 {
 	this->maze->loadFromResources(name);
-	this->maze->setMouse(new Mouse());
+	if (this->mouse != nullptr) {
+		delete mouse;
+	}
+	mouse = new Mouse();
+	this->maze->setMouse(mouse);
 }
 
 void MazePanel::run()
 {
+	mouse->run();
 }
 
 void MazePanel::analyze()
 {
+	mouse->analyze();
 }

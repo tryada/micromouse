@@ -7,11 +7,12 @@
 #include <qpainterpath.h>
 #include <qcolor.h>
 #include <vector>
+#include <qgraphicsscene.h>
+#include <qtimer.h>
 #include "mazeBlock.h"
 #include "directionEnum.h"
-#include "qgraphicsscene.h"
 
-class Mouse : public QGraphicsItem
+class Mouse : public QGraphicsItem, public QObject
 {
 public:
 	Mouse();
@@ -28,9 +29,9 @@ public:
 
 	inline long getAnalyzeTime() { return this->analyzeTime; }
 	inline long getRunTime() { return this->runTime; }
-
-protected:
-	void advance(int step) override;
+	
+	void runIteration();
+	void analyzeIteration();
 
 private:
 	bool isAnalyzeFinished;
@@ -39,6 +40,8 @@ private:
 
 	long analyzeTime;
 	long runTime;
+
+	QTimer* timer;
 
 	std::vector<MazeBlock*> getWalls(QPolygonF sensor);
 
