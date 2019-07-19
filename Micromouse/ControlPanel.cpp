@@ -74,7 +74,9 @@ void ControlPanel::setupInputs()
 		mazeComboBox->addItem(QString("Przykład: " + QString::number(i)));
 	}
 	speedSlider = new QSlider(Qt::Horizontal);
+	speedSlider->setDisabled(true);
 	pathCheckBox = new QCheckBox("Pokaż");
+	pathCheckBox->setDisabled(true);
 }
 
 void ControlPanel::setupButtons()
