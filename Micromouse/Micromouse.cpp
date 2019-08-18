@@ -6,6 +6,9 @@ Micromouse::Micromouse(QWidget *parent)
 	ui.setupUi(this);
 	this->setupLayout();
 	this->setupSignalsAndSlots();
+
+	// Test
+	mazePanel->templateChanged(":/maze/maze_3");
 }
 
 Micromouse::~Micromouse()

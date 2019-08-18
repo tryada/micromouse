@@ -24,7 +24,6 @@ public:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 		QWidget *widget) override;
 
-
 	QRectF boundingRect() const override;
 
 	inline long getAnalyzeTime() { return this->analyzeTime; }
@@ -36,14 +35,30 @@ public:
 private:
 	bool isAnalyzeFinished;
 	DirectionEnum direction;
-	QPolygonF leftSensor, topSensor, rightSensor, bottomSensor;
+	QPolygonF leftSensor, frontSensor, rightSensor;
 
 	long analyzeTime;
 	long runTime;
+
+	int step = 1;
+	int sensorDistance = 15;
 
 	QTimer* timer;
 
 	std::vector<MazeBlock*> getWalls(QPolygonF sensor);
 
 	void resetSensors();
+
+	void turnLeft();
+	void turnRight();
+	void makeUTurn();
+
+	int getDistanceFromHead(MazeBlock* block);
+	int getDistanceFromLeftSide(MazeBlock* block);
+	int getDistanceFromRightSide(MazeBlock* block);
+	int getCorrection(MazeBlock* leftBlock, MazeBlock* rightBlock);
+
+	std::vector<MazeBlock*> visitedBlocks;
+	void addToVisitedBlock(MazeBlock* block);
+	MazeBlock* getCurrentBlock();
 };

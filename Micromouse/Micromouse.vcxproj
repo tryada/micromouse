@@ -139,6 +139,7 @@
   <ItemGroup>
     <Text Include="Resources\micromouse_maze_1.txt" />
     <Text Include="Resources\micromouse_maze_2.txt" />
+    <Text Include="Resources\micromouse_maze_3.txt" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="controlPanel.h">

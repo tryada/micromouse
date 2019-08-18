@@ -86,6 +86,9 @@
     <Text Include="Resources\micromouse_maze_2.txt">
       <Filter>Resources</Filter>
     </Text>
+    <Text Include="Resources\micromouse_maze_3.txt">
+      <Filter>Resources</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="directionEnum.h">

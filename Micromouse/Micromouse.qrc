@@ -3,5 +3,6 @@
     <qresource prefix="/maze">
         <file alias="maze_1">Resources/micromouse_maze_1.txt</file>
         <file alias="maze_2">Resources/micromouse_maze_2.txt</file>
+        <file alias="maze_3">Resources/micromouse_maze_3.txt</file>
     </qresource>
 </RCC>
