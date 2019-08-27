@@ -256,20 +256,24 @@ bool Mouse::makeRandomTurn(bool leftClear, bool frontClear, bool rightClear, boo
 				turnLeft();
 				success = true;
 			}
+			break;
 		case Front:
 			if (frontClear) {
 				success = true;
 			}
+			break;
 		case Right:
 			if (rightClear) {
 				turnRight();
 				success = true;
 			}
+			break;
 		case Back:
 			if (backClear) {
 				makeUTurn();
 				success = true;
 			}
+			break;
 		default:
 			break;
 		}
