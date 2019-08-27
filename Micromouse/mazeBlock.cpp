@@ -2,8 +2,13 @@
 #include <qbrush.h>
 #include <qpen.h>
 
-MazeBlock::MazeBlock(QGraphicsItem *parent)
-	: QGraphicsRectItem(parent), isWall(false), isFinish(false), isStart(false)
+MazeBlock::MazeBlock(int x, int y) : 
+	QGraphicsRectItem(nullptr), 
+	isWall(false), 
+	isFinish(false), 
+	isStart(false),
+	x(x),
+	y(y)
 {
 }
 

@@ -10,7 +10,9 @@
 #include <qgraphicsscene.h>
 #include <qtimer.h>
 #include "mazeBlock.h"
-#include "directionEnum.h"
+#include "enums.h"
+
+typedef std::vector<MazeBlock*> Blocks;
 
 class Mouse : public QGraphicsItem, public QObject
 {
@@ -35,7 +37,9 @@ public:
 private:
 	bool isAnalyzeFinished;
 	DirectionEnum direction;
-	QPolygonF leftSensor, frontSensor, rightSensor;
+	QPolygonF leftSensor, frontSensor, rightSensor, backSensor;
+	MazeBlock* currentBlock;
+	MazeBlock* currentCrossroads;
 
 	long analyzeTime;
 	long runTime;
@@ -45,20 +49,25 @@ private:
 
 	QTimer* timer;
 
-	std::vector<MazeBlock*> getWalls(QPolygonF sensor);
+	Blocks getCollidingBlocks(QPolygonF sensor);
+	Blocks getWalls(Blocks blocks);
 
 	void resetSensors();
 
 	void turnLeft();
 	void turnRight();
 	void makeUTurn();
+	bool makeRandomTurn(bool leftClear, bool frontClear, bool rightClear, bool backClear);
+
+	bool isNodeBlock(bool leftClear, bool frontClear, bool rightClear, bool backClear);
 
 	int getDistanceFromHead(MazeBlock* block);
 	int getDistanceFromLeftSide(MazeBlock* block);
 	int getDistanceFromRightSide(MazeBlock* block);
 	int getCorrection(MazeBlock* leftBlock, MazeBlock* rightBlock);
 
-	std::vector<MazeBlock*> visitedBlocks;
+	Blocks visitedBlocks;
 	void addToVisitedBlock(MazeBlock* block);
+	bool isVisitedBlock(MazeBlock* block);
 	MazeBlock* getCurrentBlock();
 };

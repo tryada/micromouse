@@ -6,7 +6,7 @@
 Maze::Maze(QObject *parent)
 	: QGraphicsScene(parent)
 {
-	mouse = nullptr;
+	mouse = nullptr; 
 	startBlock = nullptr;
 }
 
@@ -77,7 +77,7 @@ void Maze::setupGrid()
 		std::vector<MazeBlock*> temp;
 		for (int j = 0; j < lenght; j += step)
 		{
-			MazeBlock* rect = new MazeBlock(nullptr);
+			MazeBlock* rect = new MazeBlock(j / step, i / step);
 			rect->setRect(QRect(j, i, step, step));
 			temp.push_back(rect);
 			this->addItem(rect);

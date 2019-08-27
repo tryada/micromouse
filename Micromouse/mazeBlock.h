@@ -5,7 +5,7 @@
 class MazeBlock : public QGraphicsRectItem
 {
 public:
-	MazeBlock(QGraphicsItem *parent);
+	MazeBlock(int x, int y);
 	~MazeBlock();
 
 	bool getIsStart();
@@ -22,4 +22,7 @@ private:
 	bool isStart;
 	bool isFinish;
 	bool isWall;
+
+	int x;
+	int y;
 };

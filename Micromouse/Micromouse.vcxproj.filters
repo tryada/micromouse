@@ -91,13 +91,13 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="directionEnum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mouse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mazeBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

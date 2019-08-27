@@ -3,8 +3,9 @@
 
 Mouse::Mouse() : direction(North)
 {
+	srand(time(NULL));
 	timer = new QTimer();
-	timer->setInterval(10);
+	timer->setInterval(2);
 	QObject::connect(timer, &QTimer::timeout, this, &Mouse::analyzeIteration);
 }
 
@@ -31,6 +32,9 @@ void Mouse::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, Q
 {
 	painter->setBrush(Qt::red);
 	painter->drawEllipse(boundingRect());
+	painter->setBrush(Qt::white);
+	painter->drawEllipse(QRectF(-5, -5, 3, 3));
+	painter->drawEllipse(QRectF(2, -5, 3, 3));
 }
 
 QRectF Mouse::boundingRect() const
@@ -47,65 +51,126 @@ void Mouse::analyzeIteration()
 {
 	this->resetSensors();
 
-	std::vector<MazeBlock*> leftSensorItems = this->getWalls(leftSensor);
-	std::vector<MazeBlock*> frontSensorItems = this->getWalls(frontSensor);
-	std::vector<MazeBlock*> rightSensorItems = this->getWalls(rightSensor);
+	currentBlock = this->getCurrentBlock();
+
+	if (currentBlock != nullptr && currentBlock->getIsFinish()) {
+		if (timer->isActive()) {
+			timer->stop();
+		}
+		return;
+	}
+
+	Blocks leftSensorItems = this->getCollidingBlocks(leftSensor);
+	Blocks frontSensorItems = this->getCollidingBlocks(frontSensor);
+	Blocks rightSensorItems = this->getCollidingBlocks(rightSensor);
+	Blocks backSensorItems = this->getCollidingBlocks(backSensor);
 
 	int leftSensorItemsCount = leftSensorItems.size();
 	int rightSensorItemsCount = rightSensorItems.size();
+	int frontSensorItemsCount = frontSensorItems.size();
+	int backSensorItemsCount = frontSensorItems.size();
 
-	qDebug()
-		<< "left: " << leftSensorItems.size() << ";"
-		<< "top: " << frontSensorItems.size() << ";"
-		<< "right: " << rightSensorItems.size() << ";";
+	auto leftWalls = getWalls(leftSensorItems);
+	auto frontWalls = getWalls(frontSensorItems);
+	auto rightWalls = getWalls(rightSensorItems);
 
 	int step_x = 0;
 	int step_y = 0;
 
-	this->getCurrentBlock();
+	bool leftClear = leftWalls.size() == 0;
+	bool frontClear = frontWalls.size() == 0;
+	bool rightClear = rightWalls.size() == 0;
+	bool backClear = getWalls(backSensorItems).size() == 0;
 
-	bool frontEmpty = frontSensorItems.size() == 0;
+	bool isNode = isNodeBlock(leftClear, frontClear, rightClear, backClear);
 
-	if (!frontEmpty) {
-		MazeBlock* item = frontSensorItems[0];
-		if (getDistanceFromHead(item) >= 5) {
-			frontEmpty = true;
+	if (currentBlock != nullptr
+		&& currentBlock != currentCrossroads
+		&& isNode)
+	{
+		currentCrossroads = currentBlock;
+		currentBlock->setBrush(QBrush(Qt::green));
+
+		bool turned = false;
+
+		bool isRightPathVisited = isVisitedBlock(rightSensorItems[0]);
+		bool isFrontPathVisited = isVisitedBlock(frontSensorItems[0]);
+		bool isLeftPathVisited = isVisitedBlock(leftSensorItems[0]);
+		bool isBackPathVisited = isVisitedBlock(backSensorItems[0]);
+
+		bool isMoveRightPossible = rightClear && !isRightPathVisited;
+		bool isMoveHeadPossible = frontClear && !isFrontPathVisited;
+		bool isMoveLeftPossible = leftClear && !isLeftPathVisited;
+
+		turned = makeRandomTurn(false, false, isMoveRightPossible, false);
+
+		if (!turned) {
+			turned = makeRandomTurn(isMoveLeftPossible, isMoveHeadPossible, false, false);
 		}
-	}
 
-	if (frontEmpty) {
+		if (!turned) {
+			makeRandomTurn(leftClear, frontClear, rightClear, backClear);
+		}
+
 		step_y = -step;
 	}
 	else {
-		if (leftSensorItemsCount == 0) {
-			turnLeft();
+		if (isNode == false) {
+			currentCrossroads = nullptr;
 		}
-		else if (rightSensorItemsCount == 0) {
+
+		if (!frontClear) {
+			MazeBlock* item = frontWalls[0];
+			if (getDistanceFromHead(item) >= 5) {
+				frontClear = true;
+			}
+		}
+
+		if (frontClear) {
+			step_y = -step;
+		}
+		else if (rightClear) {
 			turnRight();
+		}
+		else if (leftClear) {
+			turnLeft();
 		}
 		else {
 			makeUTurn();
 		}
 	}
 
-	if (leftSensorItemsCount > 0 && rightSensorItemsCount > 0) {
-		step_x = getCorrection(leftSensorItems[0], rightSensorItems[0]);
+	if (leftClear == false && rightClear == false) {
+		step_x = getCorrection(leftWalls[0], rightWalls[0]);
 	}
+
 	setPos(mapToParent(step_x, step_y));
 }
 
-std::vector<MazeBlock*> Mouse::getWalls(QPolygonF sensor)
+Blocks Mouse::getCollidingBlocks(QPolygonF sensor)
 {
 	QList<QGraphicsItem*> items = scene()->items(sensor);
 
-	std::vector<MazeBlock*> walls;
+	Blocks walls;
 	for (int i = 0; i < items.size(); i++) {
 		MazeBlock* it = qgraphicsitem_cast<MazeBlock *>(items[i]);
-		if (it != nullptr && !it->getIsStart() && it->IsUsed()) {
+		if (it != nullptr &&  it != this->currentBlock) {
 			walls.push_back(it);
 		}
 	}
 
+	return walls;
+}
+
+Blocks Mouse::getWalls(Blocks blocks)
+{
+	Blocks walls;
+	for (int i = 0; i < blocks.size(); i++) {
+		MazeBlock* it = qgraphicsitem_cast<MazeBlock *>(blocks[i]);
+		if (it != nullptr && it->getIsWall()) {
+			walls.push_back(it);
+		}
+	}
 	return walls;
 }
 
@@ -114,6 +179,7 @@ void Mouse::resetSensors()
 	this->leftSensor.clear();
 	this->frontSensor.clear();
 	this->rightSensor.clear();
+	this->backSensor.clear();
 
 	this->leftSensor
 		<< mapToScene(0, 0)
@@ -124,6 +190,9 @@ void Mouse::resetSensors()
 	this->rightSensor
 		<< mapToScene(0, 0)
 		<< mapToScene(sensorDistance, 0);
+	this->backSensor
+		<< mapToScene(0, 0)
+		<< mapToScene(0, sensorDistance);
 }
 
 void Mouse::turnLeft()
@@ -168,6 +237,54 @@ void Mouse::makeUTurn()
 	default:
 		break;
 	}
+}
+
+bool Mouse::makeRandomTurn(bool leftClear, bool frontClear, bool rightClear, bool backClear)
+{
+	if (!leftClear && !frontClear && !rightClear && !backClear) {
+		return false;
+	}
+
+	bool success = false;
+	int turn = -1;
+	do {
+		turn = rand() % 4;
+		switch (turn)
+		{
+		case Left:
+			if (leftClear) {
+				turnLeft();
+				success = true;
+			}
+		case Front:
+			if (frontClear) {
+				success = true;
+			}
+		case Right:
+			if (rightClear) {
+				turnRight();
+				success = true;
+			}
+		case Back:
+			if (backClear) {
+				makeUTurn();
+				success = true;
+			}
+		default:
+			break;
+		}
+	} while (!success);
+	return true;
+}
+
+bool Mouse::isNodeBlock(bool left, bool front, bool right, bool back)
+{
+	int wallsCount = 0;
+	wallsCount += left ? 0 : 1;
+	wallsCount += front ? 0 : 1;
+	wallsCount += right ? 0 : 1;
+	wallsCount += back ? 0 : 1;
+	return wallsCount <= 1;
 }
 
 int Mouse::getDistanceFromHead(MazeBlock* block)
@@ -275,21 +392,35 @@ void Mouse::addToVisitedBlock(MazeBlock * block)
 	}
 
 	if (!exists) {
-		block->setBrush(QBrush(Qt::blue));
 		visitedBlocks.push_back(block);
 	}
+}
+
+bool Mouse::isVisitedBlock(MazeBlock* block) {
+	for each (MazeBlock* vBlock in visitedBlocks)
+	{
+		if (vBlock == block) {
+			return true;
+		}
+	}
+	return false;
 }
 
 MazeBlock* Mouse::getCurrentBlock()
 {
 	auto items = scene()->items(mapToParent(boundingRect()));
 
-	for (int i = 0; i < items.size(); i++) {
-		MazeBlock* it = qgraphicsitem_cast<MazeBlock *>(items[i]);
+	items.removeOne(this);
+
+	if (items.size() > 1) {
+		return nullptr;
+	}
+	else {
+		MazeBlock* it = qgraphicsitem_cast<MazeBlock *>(items[0]);
 		if (it != nullptr) {
 			addToVisitedBlock(it);
+			return it;
 		}
 	}
-
 	return nullptr;
 }
