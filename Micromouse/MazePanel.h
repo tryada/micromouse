@@ -28,6 +28,6 @@ private:
 
 public slots:
 	void templateChanged(QString name);
-	void run();
-	void analyze();
+	void move();
+	void start();
 };

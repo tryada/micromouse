@@ -35,7 +35,7 @@ void Micromouse::setupLayout()
 void Micromouse::setupSignalsAndSlots()
 {
 	QObject::connect(controlPanel, &ControlPanel::sampleChange, mazePanel, &MazePanel::templateChanged);
-	QObject::connect(controlPanel, &ControlPanel::run, mazePanel, &MazePanel::run);
-	QObject::connect(controlPanel, &ControlPanel::analyze, mazePanel, &MazePanel::analyze);
+	QObject::connect(controlPanel, &ControlPanel::move, mazePanel, &MazePanel::move);
+	QObject::connect(controlPanel, &ControlPanel::start, mazePanel, &MazePanel::start);
 }
  

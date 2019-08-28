@@ -36,8 +36,8 @@ private:
 
 	// buttons
 	QPushButton *loadMazeButton;
-	QPushButton *startMazeReviewButton;
-	QPushButton *runButton;
+	QPushButton *startButton;
+	QPushButton *moveButton;
 
 	// methods
 	void setupLayout();
@@ -48,11 +48,11 @@ private:
 
 private slots:
 	void loadMazeButtonClick();
-	void analyzeButtonClick();
-	void runButtonClick();
+	void startButtonClick();
+	void moveButtonClick();
 
 signals:
 	void sampleChange(QString name);
-	void run();
-	void analyze();
+	void move();
+	void start();
 };

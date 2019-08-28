@@ -19,10 +19,10 @@ ControlPanel::~ControlPanel()
 	delete(speedSlider);
 	delete(pathLabel);
 	delete(pathCheckBox);
-	delete(startMazeReviewButton);
+	delete(startButton);
 	delete(mazeReviewLabel);
 	delete(mazeReviewTimeLabel);
-	delete(runButton);
+	delete(moveButton);
 	delete(mazeRunLabel);
 	delete(mazeRunTimeLabel);
 }
@@ -42,10 +42,10 @@ void ControlPanel::setupLayout()
 	layout->addWidget(speedSlider);
 	layout->addWidget(pathLabel);
 	layout->addWidget(pathCheckBox);
-	layout->addWidget(startMazeReviewButton);
+	layout->addWidget(startButton);
 	layout->addWidget(mazeReviewLabel);
 	layout->addWidget(mazeReviewTimeLabel);
-	layout->addWidget(runButton);
+	layout->addWidget(moveButton);
 	layout->addWidget(mazeRunLabel);
 	layout->addWidget(mazeRunTimeLabel);
 
@@ -82,25 +82,25 @@ void ControlPanel::setupInputs()
 void ControlPanel::setupButtons()
 {
 	loadMazeButton = new QPushButton("Wczytaj labirynt");
-	startMazeReviewButton = new QPushButton("Rozpocznij analizę");
-	runButton = new QPushButton("Start");
+	startButton = new QPushButton("Start");
+	moveButton = new QPushButton("Krok po kroku");
 }
 
 void ControlPanel::setupSignalsAndSlots()
 {
 	QObject::connect(loadMazeButton, &QPushButton::released, this, &ControlPanel::loadMazeButtonClick);
-	QObject::connect(startMazeReviewButton, &QPushButton::released, this, &ControlPanel::analyzeButtonClick);
-	QObject::connect(runButton, &QPushButton::released, this, &ControlPanel::runButtonClick);
+	QObject::connect(startButton, &QPushButton::released, this, &ControlPanel::startButtonClick);
+	QObject::connect(moveButton, &QPushButton::released, this, &ControlPanel::moveButtonClick);
 }
 
-void ControlPanel::analyzeButtonClick()
+void ControlPanel::startButtonClick()
 {
-	analyze();
+	start();
 }
 
-void ControlPanel::runButtonClick() 
+void ControlPanel::moveButtonClick() 
 {
-	run();
+	move();
 }
 
 void ControlPanel::loadMazeButtonClick()

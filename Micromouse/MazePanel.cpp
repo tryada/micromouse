@@ -32,12 +32,12 @@ void MazePanel::templateChanged(QString name)
 	this->maze->setMouse(mouse);
 }
 
-void MazePanel::run()
+void MazePanel::move()
 {
 	mouse->run();
 }
 
-void MazePanel::analyze()
+void MazePanel::start()
 {
 	mouse->analyze();
 }
