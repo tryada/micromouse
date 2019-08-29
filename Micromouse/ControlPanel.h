@@ -167,8 +167,9 @@ signals:
 	/*!
 		Sygnał wywoływany po kliknięciu przycisku 'Wczytaj labirynt'.
 		/sa loadMazeButtonClick()
+		\param mazePath ścieżka do lokalizacji gdzie znajduje się plik z układem labiryntu.
 	*/
-	void sampleChange(QString name);
+	void sampleChange(QString mazePath);
 
 	//! Publiczny sygnał.
 	/*!
