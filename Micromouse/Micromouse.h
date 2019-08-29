@@ -18,7 +18,7 @@ class Micromouse : public QMainWindow
 public:
 	//! Konstruktor.
 	/*!
-	Ustawia wysokość okna, przygotowuje widok, oraz łączy panel sterowania z podglądem.
+	Przygotowuje widok, oraz łączy panel sterowania z podglądem.
 	*/
 	Micromouse(QWidget *parent = Q_NULLPTR);
 

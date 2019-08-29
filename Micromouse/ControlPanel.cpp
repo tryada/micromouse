@@ -20,8 +20,6 @@ ControlPanel::~ControlPanel()
 	delete(pathLabel);
 	delete(pathCheckBox);
 	delete(startButton);
-	delete(mazeReviewLabel);
-	delete(mazeReviewTimeLabel);
 	delete(moveButton);
 	delete(mazeRunLabel);
 	delete(mazeRunTimeLabel);
@@ -43,8 +41,6 @@ void ControlPanel::setupLayout()
 	layout->addWidget(pathLabel);
 	layout->addWidget(pathCheckBox);
 	layout->addWidget(startButton);
-	layout->addWidget(mazeReviewLabel);
-	layout->addWidget(mazeReviewTimeLabel);
 	layout->addWidget(moveButton);
 	layout->addWidget(mazeRunLabel);
 	layout->addWidget(mazeRunTimeLabel);
@@ -57,8 +53,6 @@ void ControlPanel::setupLabels()
 	mazeLabel = new QLabel("Wybierz labirynt");
 	speedLabel = new QLabel("Prędkość myszy");
 	pathLabel = new QLabel("Ślad");
-	mazeReviewLabel = new QLabel("Czas analizy toru");
-	mazeReviewTimeLabel = new QLabel("00:00");
 	mazeRunLabel = new QLabel("Czas przejścia");
 	mazeRunTimeLabel = new QLabel("00:00");
 }
