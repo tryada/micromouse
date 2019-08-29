@@ -12,7 +12,7 @@ MazePanel::~MazePanel()
 
 void MazePanel::setup()
 {
-	maze = new Maze(this);
+	maze = new Maze<Mouse>(this);
 
 	maze->setSceneRect(0, 0, mazeSceneSize, mazeSceneSize);
 	maze->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -25,19 +25,19 @@ void MazePanel::setup()
 void MazePanel::templateChanged(QString name)
 {
 	this->maze->loadFromResources(name);
-	if (this->mouse != nullptr) {
-		delete mouse;
+	if (this->item != nullptr) {
+		delete item;
 	}
-	mouse = new Mouse();
-	this->maze->setMouse(mouse);
+	item = new Mouse();
+	this->maze->setItem(item);
 }
 
 void MazePanel::move()
 {
-	mouse->run();
+	item->run();
 }
 
 void MazePanel::start()
 {
-	mouse->analyze();
+	item->analyze();
 }

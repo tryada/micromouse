@@ -6,10 +6,9 @@
 #include "mazeBlock.h"
 #include "mouse.h"
 
+template<typename T>
 class Maze : public QGraphicsScene
 {
-	Q_OBJECT
-
 public:
 	Maze(QObject *parent);
 	~Maze();
@@ -17,12 +16,12 @@ public:
 	void setup();
 	void loadFromResources(QString name);
 
-	void setMouse(Mouse* mouse);
+	void setItem(T* item);
 
 private:
 	const int size = 33;
 	std::vector<std::vector<MazeBlock*>>* blocks;
-	Mouse* mouse;
+	T* item;
 	MazeBlock* startBlock;
 
 	void setupGrid();

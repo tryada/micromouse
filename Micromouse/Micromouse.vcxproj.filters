@@ -59,9 +59,6 @@
     <QtMoc Include="Micromouse.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="maze.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="controlPanel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -98,6 +95,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="maze.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

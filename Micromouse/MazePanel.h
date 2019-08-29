@@ -7,6 +7,7 @@
 #include <qlayout.h>
 #include <qstring.h>
 #include "maze.h"
+#include "maze.cpp"
 #include "mouse.h"
 
 //! Klasa podglądu labiryntu.
@@ -37,7 +38,7 @@ private:
 	/*!
 		Scena wyświetlająca labirynt.
 	*/
-	Maze *maze;
+	Maze<Mouse> *maze;
 
 	//! Prywatna zmienna.
 	/*!
@@ -50,7 +51,7 @@ private:
 	/*!
 		Obiekt w labiryncie.
 	*/
-	Mouse* mouse = nullptr;
+	Mouse* item = nullptr;
 
 	//! Prywatna metoda.
 	/*!
@@ -71,14 +72,14 @@ public slots:
 	//! Publiczny slot.
 	/*!
 		Zmusza obiekt do wykonania pojedynczego ruchu.
-		\sa mouse
+		\sa item
 	*/
 	void move();
 
 	//! Publiczny slot.
 	/*!
 		Uruchamia wykonanie ruchu przez obiekt.
-		\sa mouse
+		\sa item
 	*/
 	void start();
 };

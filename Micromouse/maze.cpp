@@ -3,24 +3,28 @@
 #include <qtextstream.h>
 #include <iostream>
 
-Maze::Maze(QObject *parent)
+template<typename T>
+Maze<T>::Maze(QObject *parent)
 	: QGraphicsScene(parent)
 {
-	mouse = nullptr; 
+	item = nullptr; 
 	startBlock = nullptr;
 }
 
-Maze::~Maze()
+template<typename T>
+Maze<T>::~Maze()
 {
 	delete blocks;
 }
 
-void Maze::setup()
+template<typename T>
+void Maze<T>::setup()
 {
 	this->setupGrid();
 }
 
-void Maze::loadFromResources(QString name)
+template<typename T>
+void Maze<T>::loadFromResources(QString name)
 {
 	clearGrid();
 	if (!name.isEmpty()) {
@@ -54,17 +58,19 @@ void Maze::loadFromResources(QString name)
 	}
 }
 
-void Maze::setMouse(Mouse * mouse)
+template<typename T>
+void Maze<T>::setItem(T * item)
 {
 	if (startBlock != nullptr) {
 		QRectF rect = this->startBlock->rect();
-		this->mouse = mouse;
-		this->mouse->setPos(rect.x() + rect.width() / 2, rect.y() + rect.height() / 2);
-		this->addItem(this->mouse);
+		this->item = item;
+		this->item->setPos(rect.x() + rect.width() / 2, rect.y() + rect.height() / 2);
+		this->addItem(this->item);
 	}
 }
 
-void Maze::setupGrid()
+template<typename T>
+void Maze<T>::setupGrid()
 {
 	blocks = new std::vector<std::vector<MazeBlock*>>();
 
@@ -86,7 +92,8 @@ void Maze::setupGrid()
 	}
 }
 
-void Maze::clearGrid()
+template<typename T>
+void Maze<T>::clearGrid()
 {
 	for (std::vector<std::vector<MazeBlock*>>::iterator it = blocks->begin(); it != blocks->end(); it++)
 	{
@@ -98,8 +105,8 @@ void Maze::clearGrid()
 	}
 
 	startBlock = nullptr;
-	if (mouse != nullptr) {
-		this->removeItem(mouse);
-		mouse = nullptr;
+	if (item != nullptr) {
+		this->removeItem(item);
+		item = nullptr;
 	}
 }
