@@ -14,7 +14,7 @@ MazeBlock::MazeBlock(int x, int y) :
 
 MazeBlock::~MazeBlock()
 {
-	this->setPen(QPen(Qt::black));
+
 }
 
 bool MazeBlock::getIsStart()
