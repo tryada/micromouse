@@ -34,10 +34,10 @@ void MazePanel::templateChanged(QString name)
 
 void MazePanel::move()
 {
-	item->run();
+	item->moveStepByStep();
 }
 
 void MazePanel::start()
 {
-	item->analyze();
+	item->run();
 }

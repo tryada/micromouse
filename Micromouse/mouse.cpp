@@ -6,14 +6,14 @@ Mouse::Mouse() : direction(North)
 	srand(time(NULL));
 	timer = new QTimer();
 	timer->setInterval(2);
-	QObject::connect(timer, &QTimer::timeout, this, &Mouse::analyzeIteration);
+	QObject::connect(timer, &QTimer::timeout, this, &Mouse::runIteration);
 }
 
 Mouse::~Mouse()
 {
 }
 
-void Mouse::analyze()
+void Mouse::run()
 {
 	if (timer->isActive()) {
 		timer->stop();
@@ -23,9 +23,9 @@ void Mouse::analyze()
 	}
 }
 
-void Mouse::run()
+void Mouse::moveStepByStep()
 {
-	this->analyzeIteration();
+	this->runIteration();
 }
 
 void Mouse::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
@@ -43,11 +43,6 @@ QRectF Mouse::boundingRect() const
 }
 
 void Mouse::runIteration()
-{
-
-}
-
-void Mouse::analyzeIteration()
 {
 	this->resetSensors();
 

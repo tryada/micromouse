@@ -20,8 +20,8 @@ public:
 	Mouse();
 	~Mouse();
 
-	void analyze();
 	void run();
+	void moveStepByStep();
 
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 		QWidget *widget) override;
@@ -32,7 +32,6 @@ public:
 	inline long getRunTime() { return this->runTime; }
 	
 	void runIteration();
-	void analyzeIteration();
 
 private:
 	bool isAnalyzeFinished;
